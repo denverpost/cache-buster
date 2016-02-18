@@ -18,5 +18,6 @@ if ( isset($_GET['url']) ):
     $url = htmlspecialchars($_GET['url']);
     if ( strpos($url, 'denverpost') !== FALSE ):
         purge_cache($url);
+        echo 1;
     endif;
 endif;
