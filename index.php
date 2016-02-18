@@ -7,17 +7,13 @@ function purge_cache($url)
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PURGE');
     curl_exec($ch);
     curl_close($ch);
-
-    // Log this call.
-    $log = file_get_contents('log.txt');
-    file_put_contents('log.txt', $url . "\n" . $log);
+    return 1;
 }
 
 // Handle purge requests from the bookmarklet
 if ( isset($_GET['url']) ):
     $url = htmlspecialchars($_GET['url']);
     if ( strpos($url, 'denverpost') !== FALSE ):
-        purge_cache($url);
-        echo 1;
+        if ( purge_cache($url) == 1 ) echo "success";
     endif;
 endif;
