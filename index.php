@@ -7,6 +7,10 @@ function purge_cache($url)
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PURGE');
     curl_exec($ch);
     curl_close($ch);
+
+    // Log this call.
+    $log = file_get_contents('log.txt');
+    file_put_contents('log.txt', $url . "\n" . $log);
 }
 
 // Handle purge requests from the bookmarklet
