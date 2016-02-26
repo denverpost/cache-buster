@@ -3,6 +3,7 @@
 import httplib2
 import sys, os
 import doctest
+import argparse
 
 class Bust:
     """ Send a request to invalidate the cache.
@@ -11,7 +12,9 @@ class Bust:
     def init(self):
         self.h = httplib2.Http('')
 
-    def bust(self, url)
+    def bust(self, url):
+        """ Bust cache.
+            """
         url = url.strip()
         if 'http' not in url or len(url) > 1000:
             return False
